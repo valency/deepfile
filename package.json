@@ -1,0 +1,30 @@
+{
+  "name": "deepimg",
+  "version": "0.4.17",
+  "description": "Node.js Image Server",
+  "main": "app.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.15.2",
+    "formidable": "^1.1.1",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valency/image-server.git"
+  },
+  "keywords": [
+    "image",
+    "server"
+  ],
+  "author": "Ye Ding",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valency/image-server/issues"
+  },
+  "homepage": "https://github.com/valency/image-server#readme"
+}
