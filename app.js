@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var express = require('express');
 var colors = require('colors/safe');
 var moment = require('moment');
@@ -9,6 +11,8 @@ var util = require('util');
 
 var app = express();
 app.use(express.static('img'));
+
+var dir = process.cwd();
 
 function log(msg) {
     console.log(colors.green('[' + moment().format('YYYY-MM-DD HH:mm:ss') + '] ') + msg);
@@ -23,12 +27,13 @@ app.post('/', function (req, res) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
-    form.uploadDir = path.join(__dirname, '/img/' + moment().format('YYYY-MM-DD'));
+    form.uploadDir = path.join(dir, moment().format('YYYY-MM-DD'));
     fs.mkdir(form.uploadDir, function () {
         form.parse(req, function (err, fields, files) {
             files = files[''];
+            if (files.constructor !== Array) files = [files];
             for (var i = 0; i < files.length; i++) {
-                files[i]['path'] = files[i]['path'].replace(path.join(__dirname, '/img/'), '').replace(/\\/g, '/');
+                files[i]['path'] = files[i]['path'].replace(dir, '').replace(/\\/g, '/');
             }
             res.json(files);
         });
