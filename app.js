@@ -9,18 +9,14 @@ var fs = require('fs');
 var path = require('path');
 var util = require('util');
 
-var app = express();
-app.use(express.static('img'));
-
 var dir = process.cwd();
+var app = express();
+app.use(express.static(dir));
+
 
 function log(msg) {
     console.log(colors.green('[' + moment().format('YYYY-MM-DD HH:mm:ss') + '] ') + msg);
 }
-
-app.get('/', function (req, res) {
-    res.json({success: "ext"});
-});
 
 app.post('/', function (req, res) {
     log('Handling post request...');

@@ -1,6 +1,6 @@
 {
   "name": "image-server-nice",
-  "version": "0.4.19c",
+  "version": "0.4.20",
   "description": "Node.js Image Server",
   "main": "image-server-nice",
   "dependencies": {
