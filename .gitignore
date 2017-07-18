@@ -1,3 +1,4 @@
 .idea
-*/*.jpg
+.DS_Store
+upload_*.jpg
 node_modules
