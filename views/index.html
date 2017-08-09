@@ -5,15 +5,19 @@
     font-family: monospace;
 }
 
+.container {
+    margin-top: 10px;
+}
+
 .name {
-    margin: 10px 0;
+    margin: 5px 0 10px 0;
     display: block;
     background-color: beige;
 }
 
 .files img {
     height: 100px;
-    margin-right: 5px;
+    margin: 0 5px 5px 0;
 }</style><script>$(document).ready(function () {
     $.get("list", function (resp) {
         var container = $(".container");
