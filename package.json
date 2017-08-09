@@ -1,7 +1,7 @@
 {
   "name": "deepfile",
-  "version": "0.7.18",
-  "description": "Deefile - Node.js File Host",
+  "version": "0.8.9",
+  "description": "Deepfile - Node.js File Host",
   "main": "deepfile",
   "dependencies": {
     "colors": "^1.1.2",

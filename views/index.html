@@ -1,0 +1,35 @@
+<html><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Deepfile 文件管理系统" name="description"/><meta content="云数信息科技（深圳）有限公司" name="author"/><title>Deepfile</title><script type="text/javascript" src="lib/jquery-3.2.1/jquery-3.2.1.min.js"></script><style>body {
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+    font-family: monospace;
+}
+
+.name {
+    margin: 10px 0;
+    display: block;
+    background-color: beige;
+}
+
+.files img {
+    height: 100px;
+    margin-right: 5px;
+}</style><script>$(document).ready(function () {
+    $.get("list", function (resp) {
+        var container = $(".container");
+        for (var i = 0; i < resp.length; i++) {
+            container.append("<div class='name'>" + resp[i]["name"] + "</div><div id='" + resp[i]["name"] + "' class='files'></div>");
+            var files = resp[i]["children"];
+            for (var j = 0; j < files.length; j++) {
+                var path = "data/" + resp[i]["name"] + "/" + files[j]["name"];
+                var src = "img/logo.png";
+                if (is_pic(files[j]["name"])) src = path;
+                $("#" + resp[i]["name"]).append("<a href='" + path + "' target='_blank'><img src='" + src + "'/></a>");
+            }
+        }
+    });
+});
+
+function is_pic(f) {
+    return f.endsWith(".jpeg") || f.endsWith(".bmp") || f.endsWith(".jpg") || f.endsWith(".png") || f.endsWith(".gif");
+}</script></head><body><span>Deepfile</span><span style="float:right;">v0.8.9</span><div class="container"></div></body></html>

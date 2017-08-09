@@ -1,42 +1,35 @@
-# Node.js Image Server
+# Deepfile - Node.js File Host
 
-This project is a simple image server for uploading and downloading image files. 
+Deepfile is a simple file server for uploading and downloading files. 
 
-## Installation
-
-```
-npm install -g image-server-nice
-```
-
-## Usage
-
-Navigate to the directory you want to save images. Then run the following command in that directory.
+To start service, use:
 
 ```
-image-server-nice
+make install
+make start
 ```
 
-Serve will listen on port `9007`.
+Server will listen on port `9007`.
 
-To upload a image, just `POST` to `http://<server-ip>:9007/`. Multiple image uploading is supported and the maximum image size is 2 MB. 
-
-Server will return the image info if successful, e.g.:
+To upload a file, `POST` to `http://<server-ip>:9007/`. Multiple file uploading is supported and the default maximum file size is 2 MB. Server will return the file info if successful, e.g.:
 
 ```
 [{
     "size": 259129,
-    "path": "2017-04-19/upload_fd1d5e4aee34df614c333f390bd6610d.jpg",
+    "path": "data/2017-04-19/upload_fd1d5e4aee34df614c333f390bd6610d.jpg",
     "name": "5a00605df0ac4f8147ae78fd8ba73349.jpg",
     "type": "image/jpeg",
     "mtime": "2017-04-19T08:42:36.315Z"
 }]
 ```
 
-The image could be downloaded using `path` from the returning info, e.g.,:
+The file could be downloaded using `path` from the returning info, e.g.,:
 
 ```
-http://<server-ip>:9007/2017-04-19/upload_fd1d5e4aee34df614c333f390bd6610d.jpg
+http://<server-ip>:9007/data/2017-04-19/upload_fd1d5e4aee34df614c333f390bd6610d.jpg
 ```
 
+To show the current file list, `GET` from `http://<server-ip>:9007/list/` or navigate to `http://<server-ip>:9007/` directly.
 
+![](https://raw.githubusercontent.com/valency/deepfile/master/static/img/demo.png)
 

@@ -19,19 +19,49 @@ function log(msg, color) {
     console.log(color('[' + moment().format('YYYY-MM-DD HH:mm:ss') + '] ') + msg);
 }
 
+function listdir(dir) {
+    var files = fs.readdirSync(dir);
+    var tree = [];
+    for (var i = 0; i < files.length; i++) {
+        var p = path.join(dir, files[i]);
+        var is_dir = fs.lstatSync(p).isDirectory();
+        tree.push({
+            name: files[i],
+            directory: is_dir,
+            children: is_dir ? listdir(p) : null
+        });
+    }
+    return tree;
+}
+
+function senderr(res) {
+    res.writeHead(404, {'Content-Type': 'image/gif'});
+    res.end(fs.readFileSync('static/img/404.gif'), 'binary');
+}
+
 // Views
 app.get('*', function (req, res) {
     var v = req.path.replace(/\//g, '');
-    log('Processing view request: ' + v);
-    if (v === '') v = 'index';
-    res.render(v, null, function (err, html) {
-        if (err) {
-            res.send('404', {status: 404});
-            log('View not found: ' + v, colors.red);
-        } else {
-            res.send(html);
+    if (v === 'list') {
+        log('Processing list request...');
+        res.send(listdir(dir));
+    } else {
+        if (v === '') v = 'index';
+        log('Processing view request: ' + v);
+        try {
+            res.render(v, null, function (err, html) {
+                if (err) {
+                    log('View not found: ' + v, colors.red);
+                    senderr(res);
+                } else {
+                    res.send(html);
+                }
+            });
+        } catch (exp) {
+            log('File not found: ' + v, colors.red);
+            senderr(res);
         }
-    });
+    }
 });
 
 app.post('/', function (req, res) {
@@ -49,7 +79,7 @@ app.post('/', function (req, res) {
             if (f) {
                 if (f.constructor !== Array) f = [f];
                 for (var i = 0; i < f.length; i++) {
-                    f[i]['path'] = f[i]['path'].replace(dir, '').replace(/\\/g, '/');
+                    f[i]['path'] = f[i]['path'].replace('static/', '').replace(/\\/g, '/');
                 }
                 res.json(f);
             } else {

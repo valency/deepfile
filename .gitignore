@@ -1,4 +1,4 @@
 .idea
 .DS_Store
-upload_*.jpg
 node_modules
+static/data/*
