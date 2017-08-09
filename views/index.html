@@ -18,13 +18,15 @@
     $.get("list", function (resp) {
         var container = $(".container");
         for (var i = 0; i < resp.length; i++) {
-            container.append("<div class='name'>" + resp[i]["name"] + "</div><div id='" + resp[i]["name"] + "' class='files'></div>");
             var files = resp[i]["children"];
-            for (var j = 0; j < files.length; j++) {
-                var path = "data/" + resp[i]["name"] + "/" + files[j]["name"];
-                var src = "img/logo.png";
-                if (is_pic(files[j]["name"])) src = path;
-                $("#" + resp[i]["name"]).append("<a href='" + path + "' target='_blank'><img src='" + src + "'/></a>");
+            if (files) {
+                container.append("<div class='name'>" + resp[i]["name"] + "</div><div id='" + resp[i]["name"] + "' class='files'></div>");
+                for (var j = 0; j < files.length; j++) {
+                    var path = "data/" + resp[i]["name"] + "/" + files[j]["name"];
+                    var src = "img/logo.png";
+                    if (is_pic(files[j]["name"])) src = path;
+                    $("#" + resp[i]["name"]).append("<a href='" + path + "' target='_blank'><img src='" + src + "'/></a>");
+                }
             }
         }
     });
