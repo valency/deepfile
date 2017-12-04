@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.get("list", function (resp) {
         var container = $(".container");
-        for (var i = 0; i < resp.length; i++) {
+        for (var i = 0; i < resp.length && i < 7; i++) {
             var files = resp[i]["children"];
             if (files) {
                 container.append("<div class='name'>" + resp[i]["name"] + "</div><div id='" + resp[i]["name"] + "' class='files'></div>");
