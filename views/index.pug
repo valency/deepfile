@@ -14,8 +14,10 @@ html
         script(type='text/javascript', src="lib/jquery-file-upload-9.19.2/js/jquery.fileupload.js")
         script(type='text/javascript', src='js/index.js')
     body
-        span Deepfile
-        a(href="javascript:void(0)", id="upload-btn")  +
-        span(style='float:right;') v0.12.4
-        input#upload-file(type="file", name="files[]", data-url="." style="display:none;" multiple)
+        header
+            span Deepfile
+            | &nbsp;
+            a(href="javascript:void(0)", id="upload-btn") +
+            span(style='float:right;') v0.12.4
+            input#upload-file(type="file", name="files[]", data-url="." style="display:none;" multiple)
         .container
