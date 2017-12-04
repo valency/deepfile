@@ -22,7 +22,7 @@ function log(msg, color) {
 function listdir(dir) {
     var files = fs.readdirSync(dir);
     var tree = [];
-    for (var i = 0; i < files.length; i++) {
+    for (var i = files.length - 1; i >= 0; i--) {
         var p = path.join(dir, files[i]);
         var is_dir = fs.lstatSync(p).isDirectory();
         tree.push({
