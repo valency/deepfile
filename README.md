@@ -33,3 +33,6 @@ To show the current file list, `GET` from `http://<server-ip>:9007/list/` or nav
 
 ![](https://raw.githubusercontent.com/valency/deepfile/master/static/img/demo.png)
 
+---
+
+&copy; 2018-2020 Valency
